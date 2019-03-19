@@ -31,7 +31,9 @@ ggplot(data=Autism_Traits_Yes, aes(Autism_Traits_Yes$Ethnicity))+
 ggplot(data=Autism_Traits_Yes, aes(Autism_Traits_Yes$Family_mem_with_ASD), fill="green")+ 
   stat_summary_bin(aes(y=Autism_Traits_Yes$Age_Mons), fun.y = "median", geom = "bar")+
   theme( axis.line = element_line(colour = "darkblue", 
-                                size = 1, linetype = "solid"), legend.key = element_rect(fill = "white", colour = "black"))
+                               size = 1, linetype = "solid"), legend.key = element_rect(fill = "white", colour = "black"))
+                               
+![alt text](https://user-images.githubusercontent.com/45016625/54631869-d9958180-4a4a-11e9-8202-6ab7b5c9e4ee.png "Median age of Autism detection when a family member has autism vs when a family member does not have Autism")
 
 #find correlation between the questions and the Autism traits. Note - added a new column mapping for autism trait = 1/0 for Yes/No to make the column numeric 
 cor(Autism_screening[,c(2:13,20)], use="pairwise", method="spearman")
@@ -58,7 +60,8 @@ install.packages("tree")
  
   plot(tree_model)
   text(tree_model, pretty=0)
-  
+![alt text](https://user-images.githubusercontent.com/45016625/54632089-51fc4280-4a4b-11e9-920e-a6fddedf1193.png "Plot tree model")
+
   #Update the training_data features as factors for using classification tree 
     testing_data[,names]<-lapply(testing_data[,names], factor)
   str(testing_data)
