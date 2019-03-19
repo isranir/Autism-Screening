@@ -1,16 +1,22 @@
-library(readr)
+library(readr) 
+
 getwd()
+
 setwd("C:/Old laptop/Data/CA/Data Science/autism-screening-for-toddlers")
+
 Autism_screening <- read_csv("ToddlerAutismdatasetJuly2018CleanedUp.csv")
+
 View(Autism_screening)
+
 install.packages("ggplot2")
+
 library("ggplot2")
 
 #Filter for Autism traits = Yes
 Autism_Traits_Yes <- dplyr::filter(Autism_screening, Autism_screening$`Class/ASD Traits` == "Yes")
 View(Autism_Traits_Yes)
 
-# Median age of Autism detection by Ethnicity
+**Median age of Autism detection by Ethnicity**
 ggplot(data=Autism_Traits_Yes, aes(Autism_Traits_Yes$Ethnicity))+
   stat_summary_bin(aes(y=Autism_Traits_Yes$Age_Mons), fun.y = "median", geom = "bar")+
   theme( axis.line = element_line(colour = "darkblue", 
@@ -18,10 +24,10 @@ ggplot(data=Autism_Traits_Yes, aes(Autism_Traits_Yes$Ethnicity))+
 
 ![alt text](https://user-images.githubusercontent.com/45016625/54564301-6da71080-4999-11e9-8b68-dfd3527fccc6.png "Median age of Autism detection by Ethnicity")
 
-# From the chart above, we can see that the earliest age Autism is detected in Hispanics and the latest age Autism is detected is in Native Indian
+**From the chart above, we can see that the earliest age Autism is detected in Hispanics and the latest age Autism is detected is in Native Indian**
 
 
-# Median age of Autism detection when a famliy member has autism vs when a family member does not have Autism
+**Median age of Autism detection when a famliy member has autism vs when a family member does not have Autism**
 ggplot(data=Autism_Traits_Yes, aes(Autism_Traits_Yes$Family_mem_with_ASD), fill="green")+ 
   stat_summary_bin(aes(y=Autism_Traits_Yes$Age_Mons), fun.y = "median", geom = "bar")+
   theme( axis.line = element_line(colour = "darkblue", 
