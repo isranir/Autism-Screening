@@ -10,13 +10,18 @@ library("ggplot2")
 Autism_Traits_Yes <- dplyr::filter(Autism_screening, Autism_screening$`Class/ASD Traits` == "Yes")
 View(Autism_Traits_Yes)
 
-#Median age of Autism detection by Ethnicty
+# Median age of Autism detection by Ethnicity
 ggplot(data=Autism_Traits_Yes, aes(Autism_Traits_Yes$Ethnicity))+
   stat_summary_bin(aes(y=Autism_Traits_Yes$Age_Mons), fun.y = "median", geom = "bar")+
   theme( axis.line = element_line(colour = "darkblue", 
                                   size = 1, linetype = "solid"), legend.key = element_rect(fill = "white", colour = "black"))
 
-#Median age of Autism detection when a famliy member has autism vs when a family member does not have Autism
+![alt text](https://user-images.githubusercontent.com/45016625/54564301-6da71080-4999-11e9-8b68-dfd3527fccc6.png "Median age of Autism detection by Ethnicity")
+
+# From the chart above, we can see that the earliest age Autism is detected in Hispanics and the latest age Autism is detected is in Native Indian
+
+
+# Median age of Autism detection when a famliy member has autism vs when a family member does not have Autism
 ggplot(data=Autism_Traits_Yes, aes(Autism_Traits_Yes$Family_mem_with_ASD), fill="green")+ 
   stat_summary_bin(aes(y=Autism_Traits_Yes$Age_Mons), fun.y = "median", geom = "bar")+
   theme( axis.line = element_line(colour = "darkblue", 
@@ -56,18 +61,5 @@ install.packages("tree")
   tree_pred=predict(tree_model, testing_data, type="class")
   mean(tree_pred!=ASDTraits) #9.7%
   
-  ## Mean of the difference between actual and predicted is 9.7%. No need to prune the tree. 
-  
-  #Prune the tree - cross validation to check where to stop pruning
-  # set.seed(3)
-  # cv_tree=cv.tree(tree_model, FUN= prune.misclass)
-  # names(cv_tree)
-  # 
-  # plot(cv_tree$size, cv_tree$dev, type="b")
-  # 
-  # pruned_model=prune.misclass(tree_model, best= 20)
-  # plot(pruned_model)
-  # text(pruned_model, pretty=0)
-  # tree_pred=predict(pruned_model, testing_data, type="class")
-  # mean(tree_pred !=ASDTraits)
-    
+  #Mean of the difference between actual and predicted is 9.7%. No need to prune the tree. 
+
