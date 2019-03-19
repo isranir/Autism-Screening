@@ -16,7 +16,7 @@ ggplot(data=Autism_Traits_Yes, aes(Autism_Traits_Yes$Ethnicity))+
   theme( axis.line = element_line(colour = "darkblue", 
                                   size = 1, linetype = "solid"), legend.key = element_rect(fill = "white", colour = "black"))
                                   
-
+https://user-images.githubusercontent.com/45016625/54564301-6da71080-4999-11e9-8b68-dfd3527fccc6.png
 #Median age of Autism detection when a famliy member has autism vs when a family member does not have Autism
 ggplot(data=Autism_Traits_Yes, aes(Autism_Traits_Yes$Family_mem_with_ASD), fill="green")+ 
   stat_summary_bin(aes(y=Autism_Traits_Yes$Age_Mons), fun.y = "median", geom = "bar")+
